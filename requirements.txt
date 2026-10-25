@@ -1,0 +1,21 @@
+# Рантайм сервиса: HTTP + RapidOCR (ONNX, CPU) + OpenCV headless.
+#
+# rapidocr-onnxruntime ставится отдельным шагом `--no-deps` (см. Dockerfile):
+# пакет объявляет зависимость на opencv-python (с GUI-сборкой), а сервису нужен
+# headless-вариант — иначе `import cv2` требует libGL и падает на старте.
+fastapi==0.115.6
+uvicorn==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+pydantic-settings==2.7.0
+numpy==2.1.3
+opencv-python-headless==4.10.0.84
+onnxruntime==1.20.1
+# RapidOCR подаёт страницу в ONNX через Pillow: без него движок падает на
+# первом же задании («No module named 'PIL'»), а пробы остаются зелёными
+pillow==11.1.0
+# зависимости rapidocr-onnxruntime, которые обычно приезжают вместе с ним
+shapely==2.0.6
+pyclipper==1.3.0.post6
+six==1.17.0
+pyyaml==6.0.2

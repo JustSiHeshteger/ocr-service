@@ -1,0 +1,24 @@
+[project]
+name = "ocr-service"
+version = "1.0.0"
+description = "OCR-сервис арт-слоя автоперевода комиксов"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# src-layout: тесты не зависят от editable install
+pythonpath = ["src"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
